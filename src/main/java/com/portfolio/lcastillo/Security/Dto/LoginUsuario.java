@@ -1,16 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+Proyecto: Mi porfolio
+Autor: lcastillo
+© Argentina Programa 2022
+*/
 package com.portfolio.lcastillo.Security.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- *
- * @author Usuario
- */
+
 public class LoginUsuario {
     @NotBlank
     private String nombreUsuario;
@@ -18,6 +15,11 @@ public class LoginUsuario {
     private String password;
     
     //Getter & Setter
+
+    public LoginUsuario(String nombreUsuario, String password) {
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+    }
 
     public String getNombreUsuario() {
         return nombreUsuario;

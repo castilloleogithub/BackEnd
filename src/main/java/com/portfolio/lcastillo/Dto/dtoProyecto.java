@@ -10,27 +10,26 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class dtoExperiencia {
+public class dtoProyecto {
     @NotBlank
     private String nombreE;
     @NotBlank
     private String descripcionE;
     private String periE;
     private String imgE;
-    
-    //Constructores
+    private String linkE;
 
-    public dtoExperiencia() {
+    public dtoProyecto() {
     }
 
-    public dtoExperiencia(String nombreE, String descripcionE,String periE, String imgE) {
+    public dtoProyecto(String nombreE, String descripcionE,String periE, String imgE, String linkE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
         this.periE = periE;
         this.imgE = imgE;
+        this.imgE = linkE;
     }
-    /*/Getters & Setters
-
+/*
     public String getNombreE() {
         return nombreE;
     }
@@ -46,5 +45,6 @@ public class dtoExperiencia {
     public void setDescripcionE(String descripcionE) {
         this.descripcionE = descripcionE;
     }
+    
     */
 }

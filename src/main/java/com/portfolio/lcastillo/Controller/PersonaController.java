@@ -1,4 +1,8 @@
-
+/*
+Proyecto: Mi porfolio
+Autor: lcastillo
+© Argentina Programa 2022
+*/
 package com.portfolio.lcastillo.Controller;
 
 import com.portfolio.lcastillo.Entity.Persona;
@@ -17,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://lcastillofrotend.web.app")
+@CrossOrigin(origins = "*")
 public class PersonaController {
     @Autowired IPersonaService ipersonaService;
     
@@ -45,18 +51,21 @@ public class PersonaController {
     public Persona editPersona(@PathVariable Long id,
                                @RequestParam("nombre") String nuevoNombre,
                                @RequestParam("apellido") String nuevoApellido,
-                               @RequestParam("img") String nuevoImg){
+                               @RequestParam("img") String nuevoImg
+                           //    @RequestParam("descripcion") String nuevoDescripcion
+                               ){
         Persona persona = ipersonaService.findPersona(id);
         
         persona.setNombre(nuevoNombre);
         persona.setApellido(nuevoApellido);
         persona.setImg(nuevoImg);
+    //   persona.setDescripcion(nuevoDescripcion);
         
         ipersonaService.savePersona(persona);
         return persona;
     }
     
-    @GetMapping("personas/traer/perfil")
+    @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
         return ipersonaService.findPersona((long)1);
     }

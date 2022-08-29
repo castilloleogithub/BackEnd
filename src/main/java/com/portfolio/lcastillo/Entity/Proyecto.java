@@ -3,33 +3,47 @@ Proyecto: Mi porfolio
 Autor: lcastillo
 © Argentina Programa 2022
 */
-package com.portfolio.lcastillo.Dto;
+package com.portfolio.lcastillo.Entity;
 
-import javax.validation.constraints.NotBlank;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class dtoExperiencia {
-    @NotBlank
+@Entity
+public class Proyecto {
+     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombreE;
-    @NotBlank
     private String descripcionE;
     private String periE;
     private String imgE;
+    private String linkE;
     
-    //Constructores
-
-    public dtoExperiencia() {
+    public Proyecto() {
     }
 
-    public dtoExperiencia(String nombreE, String descripcionE,String periE, String imgE) {
+    public Proyecto(String nombreE, String descripcionE,String periE, String imgE, String linkE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
         this.periE = periE;
         this.imgE = imgE;
+        this.linkE = linkE;
+        
     }
-    /*/Getters & Setters
+/*
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombreE() {
         return nombreE;

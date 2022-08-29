@@ -1,17 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+Proyecto: Mi porfolio
+Autor: lcastillo
+© Argentina Programa 2022
+*/
 package com.portfolio.lcastillo.Security.Dto;
 
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- *
- * @author Usuario
- */
 public class NuevoUsuario {
     private String nombre;
     private String nombreUsuario;
@@ -20,6 +16,13 @@ public class NuevoUsuario {
     private Set<String> roles = new HashSet<>();
     
     //Gettes & Setters
+
+    public NuevoUsuario(String nombre, String nombreUsuario, String email, String password) {
+        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getNombre() {
         return nombre;

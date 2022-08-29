@@ -5,10 +5,10 @@ Autor: lcastillo
 */
 package com.portfolio.lcastillo.Controller;
 
-import com.portfolio.lcastillo.Dto.dtoEducacion;
-import com.portfolio.lcastillo.Entity.Educacion;
+import com.portfolio.lcastillo.Dto.dtoProyecto;
+import com.portfolio.lcastillo.Entity.Proyecto;
 import com.portfolio.lcastillo.Security.Controller.Mensaje;
-import com.portfolio.lcastillo.Service.Seducacion;
+import com.portfolio.lcastillo.Service.Sproyecto;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,76 +25,77 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/educacion")
+@RequestMapping("/proyecto")
 //@CrossOrigin(origins = "http://localhost:4200")
 //@CrossOrigin(origins = "https://lcastillofrotend.web.app")
 @CrossOrigin(origins = "*")
-public class CEducacion {
-    @Autowired
-    Seducacion sEducacion;
+public class CProyecto {
+     @Autowired
+    Sproyecto sProyecto;
     
     @GetMapping("/lista")
-    public ResponseEntity<List<Educacion>> list(){
-        List<Educacion> list = sEducacion.list();
+    public ResponseEntity<List<Proyecto>> list(){
+        List<Proyecto> list = sProyecto.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Educacion> getById(@PathVariable("id")int id){
-        if(!sEducacion.existsById(id)){
+    public ResponseEntity<Proyecto> getById(@PathVariable("id")int id){
+        if(!sProyecto.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
         }
         
-        Educacion educacion = sEducacion.getOne(id).get();
-        return new ResponseEntity(educacion, HttpStatus.OK);
+        Proyecto proyecto = sProyecto.getOne(id).get();
+        return new ResponseEntity(proyecto, HttpStatus.OK);
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
-        if(!sEducacion.existsById(id)){
+        if(!sProyecto.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        sEducacion.delete(id);
-        return new ResponseEntity(new Mensaje("Educacion eliminada"), HttpStatus.OK);
+        sProyecto.delete(id);
+        return new ResponseEntity(new Mensaje("Proyecto eliminado"), HttpStatus.OK);
     }
     
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoEducacion dtoeducacion){
-        if(StringUtils.isBlank(dtoeducacion.getNombreE())){
+    public ResponseEntity<?> create(@RequestBody dtoProyecto dtoproyecto){
+        if(StringUtils.isBlank(dtoproyecto.getNombreE())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if(sEducacion.existsByNombreE(dtoeducacion.getNombreE())){
+        if(sProyecto.existsByNombreE(dtoproyecto.getNombreE())){
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         
-        Educacion educacion = new Educacion(
-                dtoeducacion.getNombreE(), dtoeducacion.getDescripcionE(),dtoeducacion.getPeriE(), dtoeducacion.getImgE()
+        Proyecto proyecto = new Proyecto(
+                dtoproyecto.getNombreE(), dtoproyecto.getDescripcionE(),dtoproyecto.getPeriE(), dtoproyecto.getImgE(),dtoproyecto.getLinkE()
             );
-        sEducacion.save(educacion);
-        return new ResponseEntity(new Mensaje("Educacion creada"), HttpStatus.OK);
+        sProyecto.save(proyecto);
+        return new ResponseEntity(new Mensaje("Proyecto creado"), HttpStatus.OK);
                 
     }
     
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducacion dtoeducacion){
-        if(!sEducacion.existsById(id)){
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoProyecto dtoproyecto){
+        if(!sProyecto.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        if(sEducacion.existsByNombreE(dtoeducacion.getNombreE()) && sEducacion.getByNombreE(dtoeducacion.getNombreE()).get().getId() != id){
+        if(sProyecto.existsByNombreE(dtoproyecto.getNombreE()) && sProyecto.getByNombreE(dtoproyecto.getNombreE()).get().getId() != id){
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
-        if(StringUtils.isBlank(dtoeducacion.getNombreE())){
+        if(StringUtils.isBlank(dtoproyecto.getNombreE())){
             return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
         }
         
-        Educacion educacion = sEducacion.getOne(id).get();
+        Proyecto proyecto = sProyecto.getOne(id).get();
         
-        educacion.setNombreE(dtoeducacion.getNombreE());
-        educacion.setDescripcionE(dtoeducacion.getDescripcionE());
-        educacion.setPeriE(dtoeducacion.getPeriE());
-        educacion.setImgE(dtoeducacion.getImgE());
+        proyecto.setNombreE(dtoproyecto.getNombreE());
+        proyecto.setDescripcionE(dtoproyecto.getDescripcionE());
+        proyecto.setPeriE(dtoproyecto.getPeriE());
+        proyecto.setImgE(dtoproyecto.getImgE());
+        proyecto.setLinkE(dtoproyecto.getLinkE());
+       
+        sProyecto.save(proyecto);
         
-        sEducacion.save(educacion);
-        
-        return new ResponseEntity(new Mensaje("Educacion actualizada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Proyecto actualizado"), HttpStatus.OK);
     }
 }

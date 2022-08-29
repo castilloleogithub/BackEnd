@@ -1,15 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+Proyecto: Mi porfolio
+Autor: lcastillo
+© Argentina Programa 2022
+*/
 package com.portfolio.lcastillo.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 @Entity
 public class Experiencia {
     @Id
@@ -17,18 +20,21 @@ public class Experiencia {
     private int id;
     private String nombreE;
     private String descripcionE;
-    
+    private String periE;
+    private String imgE;
     //Constructores
 
     public Experiencia() {
     }
 
-    public Experiencia(String nombreE, String descripcionE) {
+    public Experiencia(String nombreE, String descripcionE,String periE, String imgE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
+        this.periE = periE;
+        this.imgE = imgE;
     }
     
-    //Getters and setters
+    /*/Getters and setters
 
     public int getId() {
         return id;
@@ -53,5 +59,5 @@ public class Experiencia {
     public void setDescripcionE(String descripcionE) {
         this.descripcionE = descripcionE;
     }
-    
+    */
 }

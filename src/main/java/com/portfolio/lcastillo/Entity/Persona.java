@@ -1,3 +1,8 @@
+/*
+Proyecto: Mi porfolio
+Autor: lcastillo
+© Argentina Programa 2022
+*/
 package com.portfolio.lcastillo.Entity;
 
 import javax.persistence.Entity;
@@ -27,6 +32,9 @@ public class Persona {
     @Size(min = 1, max = 50, message = "no cumple con la longitud")
     private String img;
 
-       
+    @Size(min = 1, max = 500, message = "no cumple con la longitud")
+    private String descripcion;
+
+ 
     
 }
